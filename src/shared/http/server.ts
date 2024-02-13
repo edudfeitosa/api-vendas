@@ -2,17 +2,17 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import routes from './routes';
 import AppError from '@shared/errors/app-error';
+import 'dotenv/config';
 
-const app = express();
-const port = 3000;
+const server = express();
 
 // configuração do express
-app.use(cors());
-app.use(express.json());
-app.use(routes);
+server.use(cors());
+server.use(express.json());
+server.use(routes);
 
 // tratamento de erros
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+server.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof AppError) {
     return res.status(400).json({
       status: 'error',
@@ -26,7 +26,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-// inicialização do servidor
-app.listen(port, () => {
-  console.log(`Server iniciado na porta ${port}`);
-});
+export default server;
