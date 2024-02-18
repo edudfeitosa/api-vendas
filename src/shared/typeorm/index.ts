@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const connectDB = new DataSource({
+const dataSource = new DataSource({
   type: "postgres",
   host: process.env.DB_HOST,
   port: 5432,
@@ -14,12 +14,9 @@ const connectDB = new DataSource({
   logging: true,
   entities: [],
   subscribers: [],
-  migrations: [],
+  migrations: [
+    "./src/shared/typeorm/migrations/*.ts"
+  ]
 });
 
-connectDB
-  .initialize()
-  .then(() => console.log("Conexão com o banco de dados estabelecida"))
-  .catch((err) => console.error(err));
-
-export default connectDB;
+export default dataSource;

@@ -3,7 +3,6 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import routes from './routes';
 import AppError from '@shared/errors/app-error';
-import connectDB from '@config/ormconfig';
 import 'dotenv/config';
 
 const server = express();
@@ -12,9 +11,6 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 server.use(routes);
-
-// conexão com o banco de dados
-connectDB;
 
 // tratamento de erros
 server.use((err: Error, req: Request, res: Response, next: NextFunction) => {
