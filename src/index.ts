@@ -1,5 +1,5 @@
 import server from '@shared/http/server';
-import dataSource from '@shared/typeorm';
+import dataSource from '@modules/typeorm';
 
 dataSource
   .initialize()

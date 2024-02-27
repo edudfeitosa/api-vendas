@@ -15,7 +15,7 @@ const dataSource = new DataSource({
   entities: [],
   subscribers: [],
   migrations: [
-    "./src/shared/typeorm/migrations/*.ts"
+    "./src/modules/typeorm/migrations/*.ts"
   ]
 });
 
